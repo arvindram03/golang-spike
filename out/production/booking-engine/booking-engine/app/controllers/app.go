@@ -16,3 +16,9 @@ func (c App) Index() revel.Result {
 func (c App) Hello(myName string) revel.Result {
 	return c.Render(myName, time.Now());
 }
+
+
+func (c App) SeatLayout(myName string) revel.Result {
+	return c.Render(myName, time.Now());
+}
+

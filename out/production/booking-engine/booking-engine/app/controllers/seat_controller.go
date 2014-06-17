@@ -3,32 +3,38 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"booking-engine/app/models"
+	"strings"
 )
 
 type SeatController struct {
 	*revel.Controller
 }
-//TODO bind parameters to struct
-func (seat SeatController) Create(seatName string) revel.Result {
 
-	seat1 := &models.Seat{0,seatName,"free"}
-	seat1.Create()
-
-	return seat.RenderJson(seat1);
+func (seatController SeatController) Load() revel.Result {
+	status := "ko"
+	if models.LoadIntoRedis() {
+		status = "ok"
+	}
+	return seatController.RenderHtml(status);
 }
 
-func (seatController SeatController) Load(seatName string) revel.Result {
-	seat := &models.Seat{0,seatName,""}
-	seats :=seat.GetByName()
-	helpers.LoadSeatsIntoRedis(seats)
-	return seatController.RenderJson(seats);
+func (seat SeatController) Block(seatName string) revel.Result {
+	seat1 := &models.Seat{0,seatName,"",0}
+	status := "ko"
+	if seat1.Block() {
+		status = "ok"
+	}
+	return seat.RenderHtml(status);
 }
 
-func (seat SeatController) Block() revel.Result {
-	return seat.Render();
-}
+func (seat SeatController) Confirm(seatInfo string) revel.Result {
 
-func (seat SeatController) Confirm() revel.Result {
-	return seat.Render();
+	seatdetails := strings.Split(seatInfo,"-")
+	seat1 := &models.Seat{0,seatdetails[0],"",seatdetails[1]}
+	status := "ko"
+	if seat1.Confirm() {
+		status = "ok"
+	}
+	return seat.RenderHtml(status);
 }
 

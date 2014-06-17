@@ -4,14 +4,24 @@ import (
 	"github.com/coopernurse/gorp"
 	"database/sql"
 	_ "github.com/lib/pq"
+	"fmt"
 )
-
-func InitDb() *gorp.DbMap {
-	db, err := sql.Open("postgres", "user=arvindr dbname=booking-engine sslmode=disable")
-	if ok :=err==nil; ok {
-		dbmap := &gorp.DbMap{Db: db, Dialect: gorp.PostgresDialect{}}
-		return dbmap;
-	}
- 	return nil
+var dbcon *sql.DB
+var err error
+func initDb() {
+	dbcon, err = sql.Open("postgres", "user=arvindr dbname=booking-engine sslmode=disable")
 }
 
+
+func GetDbMap() *gorp.DbMap {
+	if dbcon==nil {
+		initDb()
+	}
+	if ok := err==nil; ok {
+		dbmap := &gorp.DbMap{Db: dbcon, Dialect: gorp.PostgresDialect{}}
+		fmt.Println("dbcon",dbcon)
+		fmt.Println("dbMap",dbmap)
+		return dbmap;
+	}
+	return nil
+}

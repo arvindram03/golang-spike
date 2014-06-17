@@ -8,11 +8,11 @@ import (
 )
 var dbcon *sql.DB
 var err error
-func initDb() {
-	dbcon, err = sql.Open("postgres", "user=arvindr dbname=booking-engine sslmode=disable")
-	dbcon.SetMaxOpenConns(10)
-	dbcon.SetMaxIdleConns(10)
 
+func initDb() {
+	dbcon, err = sql.Open("postgres", "user=arvindr host=127.0.0.1 dbname=booking-engine sslmode=disable")
+//	dbcon.SetMaxOpenConns(10)
+	dbcon.SetMaxIdleConns(2)
 }
 
 

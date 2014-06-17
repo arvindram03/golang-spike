@@ -12,14 +12,13 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/*filepath                       Static.Serve("public")
 
-POST    /Seat/Create                            SeatController.Create
+POST    /Seat/Load                              SeatController.Load
 
-POST    /Seat/Load                               SeatController.Load
+POST    /Seat/Block                             SeatController.Block
 
-POST    /Seat/Block                              SeatController.Block
+POST    /Seat/Confirm                           SeatController.Confirm
 
-POST    /Seat/Confirm                              SeatController.Confirm
-
+GET     /Seed                                   SeedController.Seed
 
 # Catch all
 *       /:controller/:action                    :controller.:action

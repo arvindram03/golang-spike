@@ -3,26 +3,12 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"booking-engine/app/models"
+	"strings"
 	"strconv"
 )
 
 type SeatController struct {
 	*revel.Controller
-}
-//TODO bind parameters to struct
-func (seat SeatController) Create() revel.Result {
-	insertedAll :=false
-	for i :=0;i<1000;i++ {
-		seatName := "A"+strconv.Itoa(i)
-		seat1 := &models.Seat{0, seatName, "free"}
-		go func() {
-			if !seat1.Create() {
-				insertedAll = true
-			}
-		}()
-
-	}
-	return seat.RenderHtml("ok");
 }
 
 func (seatController SeatController) Load() revel.Result {
@@ -34,7 +20,7 @@ func (seatController SeatController) Load() revel.Result {
 }
 
 func (seat SeatController) Block(seatName string) revel.Result {
-	seat1 := &models.Seat{0,seatName,""}
+	seat1 := &models.Seat{0,seatName,"",0}
 	status := "ko"
 	if seat1.Block() {
 		status = "ok"
@@ -42,9 +28,11 @@ func (seat SeatController) Block(seatName string) revel.Result {
 	return seat.RenderHtml(status);
 }
 
-func (seat SeatController) Confirm(seatName string) revel.Result {
-	seat1 := &models.Seat{0,seatName,""}
+func (seat SeatController) Confirm(seatInfo string) revel.Result {
 
+	seatdetails := strings.Split(seatInfo,"-")
+	sessionId, _ := strconv.Atoi(seatdetails[0])
+	seat1 := &models.Seat{0, seatdetails[1], "", sessionId}
 	status := "ko"
 	if seat1.Confirm() {
 		status = "ok"

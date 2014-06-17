@@ -27,14 +27,14 @@ func LoadSeatsIntoRedis(seats map[string]string) bool{
 	return true
 }
 
-func BlockSeat(seatname string) bool{
+func BlockSeat(seatkey string) bool{
 	c, err := redis.Dial("tcp", ":6379")
 	if ok := err==nil; ok {
-		c.Do("WATCH", seatname)
-		status, _ := redis.String(c.Do("GET", seatname))
+		c.Do("WATCH", seatkey)
+		status, _ := redis.String(c.Do("GET", seatkey))
 		if status == FREE {
 			c.Do("MULTI")
-			c.Do("SET", seatname, BLOCKED)
+			c.Do("SET", seatkey, BLOCKED)
 			_, err := c.Do("EXEC")
 			if err==nil {
 				return true
@@ -45,14 +45,14 @@ func BlockSeat(seatname string) bool{
 }
 
 
-func ConfirmSeat(seatname string) bool{
+func ConfirmSeat(seatkey string) bool{
 	c, err := redis.Dial("tcp", ":6379")
 	if ok := err==nil; ok {
-		c.Do("WATCH", seatname)
-		status, _ := redis.String(c.Do("GET", seatname))
+		c.Do("WATCH", seatkey)
+		status, _ := redis.String(c.Do("GET", seatkey))
 		if status == BLOCKED {
 			c.Do("MULTI")
-			c.Do("SET", seatname, CONFIRMED)
+			c.Do("SET", seatkey, CONFIRMED)
 			_, err := c.Do("EXEC")
 			if err==nil {
 				return true
