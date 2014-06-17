@@ -12,18 +12,19 @@ const (
 	CONFIRMED = "confirmed"
 )
 
-func LoadSeatsIntoRedis(seats map[string]string) {
+func LoadSeatsIntoRedis(seats map[string]string) bool{
 	c, err := redis.Dial("tcp", ":6379")
 	if (err != nil) {
 		fmt.Println("error:%s", err)
-		return
+		return false
 	}
-
 	for seatname, status := range seats {
-		c.Do("SET", seatname, status)
-		fmt.Println(redis.String(c.Do("GET", seatname)))
+		 _, err := c.Do("SET", seatname, status)
+		if err!=nil {
+			return false
+		}
 	}
-
+	return true
 }
 
 func BlockSeat(seatname string) bool{

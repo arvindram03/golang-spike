@@ -12,14 +12,20 @@ type Seat struct {
 	Status string
 }
 
-func (seat *Seat) Create() {
-	dbmap := helpers.InitDb();
-	defer dbmap.Db.Close()
+func (seat *Seat) Create() bool{
+	dbmap := helpers.GetDbMap();
 	dbmap.AddTableWithName(Seat{}, "seats").SetKeys(true,"Id")
 	err := dbmap.CreateTablesIfNotExists()
+
 	if ok := err == nil; ok {
-		dbmap.Insert(seat)
+		error := dbmap.Insert(seat)
+		if error==nil {
+			return true
+		}
+		fmt.Println("error",error)
 	}
+	fmt.Println("err",err)
+	return false
 }
 
 func (seat *Seat) Block() bool{
@@ -31,14 +37,13 @@ func (seat *Seat) Block() bool{
 }
 
 func (seat *Seat) Confirm() bool{
-	dbmap := helpers.InitDb()
+	dbmap := helpers.GetDbMap()
 	dbmap.AddTableWithName(Seat{}, "seats").SetKeys(true,"Id")
-	defer dbmap.Db.Close()
 
 	err := dbmap.SelectOne(seat,"select * from seats where name = :name", map[string]string {
 		"name": seat.Name,
 	})
-	if ok := err==nil; ok {
+	if ok := err==nil && seat.Status != helpers.CONFIRMED; ok {
 		seat.Status = helpers.CONFIRMED
 		_,err := dbmap.Update(seat)
 		if err==nil {
@@ -46,13 +51,11 @@ func (seat *Seat) Confirm() bool{
 			return true
 		}
 	}
-
 	return false
 }
 
 func GetAllSeats() []Seat{
-	dbmap := helpers.InitDb();
-	defer dbmap.Db.Close()
+	dbmap := helpers.GetDbMap();
 
 	var seats []Seat
 	_,err :=dbmap.Select(&seats, "select * from seats")
@@ -61,13 +64,13 @@ func GetAllSeats() []Seat{
 	return seats
 
 }
-func LoadIntoRedis() {
+func LoadIntoRedis() bool{
 	seatmap := make(map[string]string)
 	seats := GetAllSeats()
 	for _,seat :=range seats {
 		seatmap[seat.Name] = seat.Status
 	}
-	helpers.LoadSeatsIntoRedis((map[string]string)(seatmap))
+	return helpers.LoadSeatsIntoRedis((map[string]string)(seatmap))
 }
 
 
