@@ -5,6 +5,7 @@ import (
 	"booking-engine/app/models"
 	"strings"
 	"strconv"
+	"fmt"
 )
 
 type SeatController struct {
@@ -29,7 +30,7 @@ func (seat SeatController) Block(seatName string) revel.Result {
 }
 
 func (seat SeatController) Confirm(seatInfo string) revel.Result {
-
+	fmt.Println(seatInfo)
 	seatdetails := strings.Split(seatInfo,"-")
 	sessionId, _ := strconv.Atoi(seatdetails[0])
 	seat1 := &models.Seat{0, seatdetails[1], "", sessionId}

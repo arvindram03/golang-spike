@@ -1,0 +1,25 @@
+INFO  2014/06/18 17:26:03 revel.go:320: Loaded module static
+INFO  2014/06/18 17:26:03 revel.go:320: Loaded module testrunner
+INFO  2014/06/18 17:26:03 run.go:57: Running booking-engine (booking-engine) in dev mode
+INFO  2014/06/18 17:26:03 harness.go:165: Listening on :9000
+WARN  2014/06/18 17:26:19 build.go:132: Cannot determine git repository version: exit status 128
+INFO  2014/06/18 17:26:21 revel.go:320: Loaded module static
+INFO  2014/06/18 17:26:21 revel.go:320: Loaded module testrunner
+INFO  2014/06/18 17:26:21 main.go:29: Running revel server
+WARN  2014/06/18 17:26:21 static.go:62: File not found (/Users/arvindr/IdeaProjects/Sample/src/booking-engine/public/js/jquery.min.map): stat /Users/arvindr/IdeaProjects/Sample/src/booking-engine/public/js/jquery.min.map: no such file or directory 
+INFO  2014/06/19 09:52:27 revel.go:320: Loaded module testrunner
+INFO  2014/06/19 09:52:27 revel.go:320: Loaded module static
+INFO  2014/06/19 09:52:27 run.go:57: Running booking-engine (booking-engine) in dev mode
+INFO  2014/06/19 09:52:27 harness.go:165: Listening on :9000
+WARN  2014/06/19 09:58:07 build.go:132: Cannot determine git repository version: exit status 128
+INFO  2014/06/19 09:58:09 revel.go:320: Loaded module static
+INFO  2014/06/19 09:58:09 revel.go:320: Loaded module testrunner
+INFO  2014/06/19 09:58:09 main.go:29: Running revel server
+INFO  2014/06/19 10:03:40 revel.go:320: Loaded module static
+INFO  2014/06/19 10:03:40 revel.go:320: Loaded module testrunner
+INFO  2014/06/19 10:03:40 run.go:57: Running booking-engine (booking-engine) in dev mode
+INFO  2014/06/19 10:03:40 harness.go:165: Listening on :9000
+WARN  2014/06/19 10:03:58 build.go:132: Cannot determine git repository version: exit status 128
+INFO  2014/06/19 10:04:00 revel.go:320: Loaded module static
+INFO  2014/06/19 10:04:00 revel.go:320: Loaded module testrunner
+INFO  2014/06/19 10:04:00 main.go:29: Running revel server

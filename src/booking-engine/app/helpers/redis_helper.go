@@ -12,23 +12,33 @@ const (
 	CONFIRMED = "confirmed"
 )
 
-func LoadSeatsIntoRedis(seats map[string]string) bool{
-	c, err := redis.Dial("tcp", ":6379")
-	if (err != nil) {
-		fmt.Println("error:%s", err)
+var c redis.Conn
+var conerror error
+func initRedis(){
+	c, conerror = redis.Dial("tcp", ":6379")
+}
+func LoadSeatsIntoRedis(seatname string,sessionid string, status string ) bool{
+	if c==nil {
+		initRedis()
+	}
+	if (conerror != nil) {
+		fmt.Println("error:%s", conerror)
 		return false
 	}
-	for seatname, status := range seats {
-		 _, err := c.Do("SET", seatname, status)
-		if err!=nil {
-			return false
-		}
+	seatkey := sessionid + "-" + seatname
+	_, err := c.Do("SET", seatkey, status)
+	if err!=nil {
+		return false
 	}
+	redistatus, _ := redis.String(c.Do("GET", seatkey))
+	fmt.Println(seatkey + "--" + redistatus)
 	return true
 }
 
 func BlockSeat(seatkey string) bool{
-	c, err := redis.Dial("tcp", ":6379")
+	if c==nil {
+		initRedis()
+	}
 	if ok := err==nil; ok {
 		c.Do("WATCH", seatkey)
 		status, _ := redis.String(c.Do("GET", seatkey))
@@ -46,7 +56,9 @@ func BlockSeat(seatkey string) bool{
 
 
 func ConfirmSeat(seatkey string) bool{
-	c, err := redis.Dial("tcp", ":6379")
+	if c==nil {
+		initRedis()
+	}
 	if ok := err==nil; ok {
 		c.Do("WATCH", seatkey)
 		status, _ := redis.String(c.Do("GET", seatkey))

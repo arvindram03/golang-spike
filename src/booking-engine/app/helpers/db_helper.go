@@ -11,8 +11,8 @@ var err error
 
 func initDb() {
 	dbcon, err = sql.Open("postgres", "user=arvindr host=127.0.0.1 dbname=booking-engine sslmode=disable")
-//	dbcon.SetMaxOpenConns(10)
-	dbcon.SetMaxIdleConns(2)
+	dbcon.SetMaxOpenConns(40)
+	dbcon.SetMaxIdleConns(4)
 }
 
 

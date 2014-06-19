@@ -52,12 +52,12 @@ func GetAllSeats() []Seat{
 
 }
 func LoadIntoRedis() bool{
-	seatmap := make(map[string]string)
+
 	seats := GetAllSeats()
 	for _,seat :=range seats {
-		seatmap[strconv.Itoa(seat.SessionId) + "-" + seat.Name] = seat.Status
+		helpers.LoadSeatsIntoRedis(seat.Name,strconv.Itoa(seat.SessionId),seat.Status)
 	}
-	return helpers.LoadSeatsIntoRedis((map[string]string)(seatmap))
+	return true
 }
 
 
