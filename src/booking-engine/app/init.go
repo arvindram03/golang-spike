@@ -1,6 +1,9 @@
 package app
 
-import "github.com/revel/revel"
+import (
+	"booking-engine/app/helpers"
+	"github.com/revel/revel"
+)
 
 func init() {
 	// Filters is the default set of global filters.
@@ -21,8 +24,12 @@ func init() {
 
 	// register startup functions with OnAppStart
 	// ( order dependent )
-	// revel.OnAppStart(InitDB())
+	revel.OnAppStart(func() { InitDB() })
 	// revel.OnAppStart(FillCache())
+}
+
+func InitDB() {
+	helpers.InitRedisPool()
 }
 
 // TODO turn this into revel.HeaderFilter

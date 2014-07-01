@@ -19,6 +19,7 @@ func (seat *Seat) Block() bool{
 		seat.Status = helpers.BLOCKED
 		return true
 	}
+
 	return false
 }
 
@@ -65,6 +66,6 @@ func LoadIntoRedis() bool{
 
 func checkErr(err error, msg string) {
 	if err != nil {
-		log.Fatalln(msg, err)
+		log.Println(msg, err)
 	}
 }

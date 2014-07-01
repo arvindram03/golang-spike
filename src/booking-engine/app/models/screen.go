@@ -1,6 +1,6 @@
 package models
 
 type Screen struct {
-	Id int
+	Id        int
 	TheatreId int
 }

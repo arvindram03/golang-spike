@@ -18,6 +18,8 @@ POST    /Seat/Block                             SeatController.Block
 
 POST    /Seat/Confirm                           SeatController.Confirm
 
+GET     /Session/:sessionId/Availability        SessionController.ScreenAvailability
+
 GET     /Seed                                   SeedController.Seed
 
 # Catch all
