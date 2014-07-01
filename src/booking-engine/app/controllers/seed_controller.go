@@ -54,8 +54,6 @@ func DumpScreens(dbmap *gorp.DbMap, theatre models.Theatre) {
 
 		DumpSessions(dbmap, screen)
 	}
-
-
 }
 
 
