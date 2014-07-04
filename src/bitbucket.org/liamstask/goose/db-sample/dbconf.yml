@@ -1,0 +1,18 @@
+
+test:
+    driver: postgres
+    open: user=liam dbname=tester sslmode=disable
+
+development:
+    driver: postgres
+    open: user=liam dbname=tester sslmode=disable
+    
+production:
+    driver: postgres
+    open: user=liam dbname=tester sslmode=verify-full
+
+customimport:
+    driver: customdriver
+    open: customdriver open
+    import: github.com/custom/driver
+    dialect: mysql
