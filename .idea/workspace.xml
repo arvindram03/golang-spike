@@ -31,7 +31,7 @@
       <file leaf-file-name="session_controller.go" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/booking-engine/app/controllers/session_controller.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="391">
               <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
               <folding />
             </state>
@@ -51,7 +51,7 @@
       <file leaf-file-name="init.go" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/booking-engine/app/init.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+            <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="867">
               <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
@@ -71,7 +71,7 @@
       <file leaf-file-name="session.go" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/booking-engine/app/models/session.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07328244" vertical-offset="258" max-vertical-offset="1360">
+            <state vertical-scroll-proportion="0.46575344" vertical-offset="0" max-vertical-offset="1360">
               <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding />
             </state>
@@ -81,7 +81,7 @@
       <file leaf-file-name="routes" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/booking-engine/conf/routes">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="578">
               <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
@@ -841,10 +841,6 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -866,6 +862,10 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
       <option name="BCName" value="" />
       <option name="launcherParameters">
@@ -878,6 +878,25 @@
       </option>
       <option name="moduleName" value="" />
       <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="GoTestConfiguration" factoryName="Go Test">
@@ -899,25 +918,6 @@
       <option name="testBeforeBenchmark" value="false" />
       <option name="goVetEnabled" value="false" />
       <module name="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -950,21 +950,6 @@
       <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <extension name="scalaCoverage" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -983,6 +968,21 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
     <list size="2">
@@ -1019,22 +1019,23 @@
       <workItem from="1404289527800" duration="1804000" />
       <workItem from="1404295617018" duration="27070000" />
       <workItem from="1404446728037" duration="7940000" />
+      <workItem from="1404455036739" duration="869000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127130000" />
+    <option name="totallyTimeSpent" value="127999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="801" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39970717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1108,7 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6365" max-vertical-offset="7080">
           <caret line="336" column="22" selection-start-line="336" selection-start-column="22" selection-end-line="336" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1116,7 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="615">
           <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,7 +1172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6365" max-vertical-offset="7080">
           <caret line="336" column="22" selection-start-line="336" selection-start-column="22" selection-end-line="336" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="14041" max-vertical-offset="30210">
           <caret line="953" column="16" selection-start-line="953" selection-start-column="16" selection-end-line="953" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1196,7 +1193,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28718704" vertical-offset="0" max-vertical-offset="1890">
           <caret line="13" column="36" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1270,7 +1266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35869566" vertical-offset="1809" max-vertical-offset="6494">
           <caret line="120" column="20" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,7 +1273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="3028" max-vertical-offset="6120">
           <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1316,9 +1310,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0806962" vertical-offset="0" max-vertical-offset="1955">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1334,7 +1325,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1496">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1342,7 +1332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4674086" vertical-offset="437" max-vertical-offset="2346">
           <caret line="43" column="21" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1358,7 +1347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33282444" vertical-offset="1465" max-vertical-offset="7259">
           <caret line="99" column="4" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1414,7 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48091602" vertical-offset="110" max-vertical-offset="1071">
           <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1446,7 +1433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10381679" vertical-offset="0" max-vertical-offset="655">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1468,7 +1454,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/booking-engine/app/models/session.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07328244" vertical-offset="258" max-vertical-offset="1360">
+        <state vertical-scroll-proportion="0.46575344" vertical-offset="0" max-vertical-offset="1360">
           <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
         </state>
