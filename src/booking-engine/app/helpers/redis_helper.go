@@ -19,6 +19,7 @@ var conerror error
 
 func initRedis() {
 	c, conerror = redis.Dial("tcp", ":6379")
+	log.Println("created redis connection")
 }
 
 var pool *pools.ResourcePool
@@ -41,11 +42,19 @@ func GetConnection() ResourceConn {
 	return connection.(ResourceConn)
 }
 
+func ReturnConnection(c ResourceConn) {
+	pool.Put(c)
+}
+
+func GetConnectionStats() (capacity, available, maxCap, waitCount int64, waitTime, idleTimeout time.Duration) {
+	return pool.Stats()
+}
+
 func InitRedisPool() {
 	pool = pools.NewResourcePool(func() (pools.Resource, error) {
 		c, err := redis.Dial("tcp", ":6379")
 		return ResourceConn{c}, err
-	}, 10, 30, time.Minute)
+	}, 20, 21, time.Minute)
 }
 
 func LoadSeatsIntoRedis(seatname string, sessionid string, status string) bool {
@@ -59,70 +68,77 @@ func LoadSeatsIntoRedis(seatname string, sessionid string, status string) bool {
 	seatkey := sessionid + "-" + seatname
 	_, err := c.Do("SET", seatkey, status)
 	if err != nil {
+		log.Println("Failed: ", err)
 		return false
 	}
-	redistatus, _ := redis.String(c.Do("GET", seatkey))
-	fmt.Println(seatkey + "--" + redistatus)
 	return true
 }
 
-func BlockSeat(seatkey string) bool {
-	if ok := err == nil; ok {
-		r, cerr := pool.Get()
-		if cerr != nil {
-			log.Println("Connection error: ", cerr)
-		}
+func LoadSessionIntoRedis(sessionid string, seatNames []string) string {
+	r, cerr := pool.Get()
+	defer pool.Put(r)
 
-		c := r.(ResourceConn)
-
-		defer pool.Put(r)
-
-		if exists, _ := redis.Int(c.Do("EXISTS", seatkey)); exists == 0 {
-			log.Println("No seat with key: ", seatkey)
-			return false
-		}
-
-		c.Do("WATCH", seatkey)
-		status, serr := redis.String(c.Do("GET", seatkey))
-		log.Printf("Seat %s, Status: %s", seatkey, status)
-		if serr != nil {
-			log.Println("Serr: ", seatkey, serr)
-		}
-
-		if status == FREE {
-			c.Do("MULTI")
-			c.Do("SET", seatkey, BLOCKED)
-			_, err := c.Do("EXEC")
-			if err == nil {
-				return true
-			} else {
-				log.Println(err)
-			}
-		}
+	if cerr != nil {
+		log.Println("Connection error: ", cerr)
 	}
 
+	c := r.(ResourceConn)
+
+	_, err := c.Do("SET", "session-" + sessionid, seatNames)
+	log.Println("session-", sessionid)
 	if err != nil {
-		log.Println("Err", err)
+		log.Println("Failed: ", err)
+	}
+
+	log.Println("Loaded, ", sessionid)
+	return sessionid
+}
+
+func BlockSeat(seatkey string) bool {
+
+	c := GetConnection()
+	defer pool.Put(c)
+
+	if exists, _ := redis.Int(c.Do("EXISTS", seatkey)); exists == 0 {
+		log.Println("No seat with key: ", seatkey)
+		return false
+	}
+
+	c.Do("WATCH", seatkey)
+	status, serr := redis.String(c.Do("GET", seatkey))
+	log.Printf("Seat %s, Status: %s", seatkey, status)
+	if serr != nil {
+		log.Println("Serr: ", seatkey, serr)
+	}
+
+	if status == FREE {
+		c.Do("MULTI")
+		c.Do("SET", seatkey, BLOCKED)
+		_, err := c.Do("EXEC")
+		if err == nil {
+			return true
+		} else {
+			log.Println(err)
+		}
 	}
 
 	return false
 }
 
 func ConfirmSeat(seatkey string) bool {
-	if c == nil {
-		initRedis()
-	}
-	if ok := err == nil; ok {
-		c.Do("WATCH", seatkey)
-		status, _ := redis.String(c.Do("GET", seatkey))
-		if status == BLOCKED {
-			c.Do("MULTI")
-			c.Do("SET", seatkey, CONFIRMED)
-			_, err := c.Do("EXEC")
-			if err == nil {
-				return true
-			}
+	c := GetConnection()
+	defer pool.Put(c)
+
+	c.Do("WATCH", seatkey)
+	status, _ := redis.String(c.Do("GET", seatkey))
+	if status == BLOCKED {
+		c.Do("MULTI")
+		c.Do("SET", seatkey, CONFIRMED)
+		_, err := c.Do("EXEC")
+		if err == nil {
+			return true
 		}
 	}
+
 	return false
 }

@@ -138,6 +138,11 @@ func TestStdlib(t *testing.T) {
 }
 
 func TestCgoOption(t *testing.T) {
+	switch runtime.GOOS {
+	// on these systems, the net and os/user packages don't use cgo.
+	case "plan9", "solaris", "windows":
+		return
+	}
 	// Test that we can load cgo-using packages with
 	// CGO_ENABLED=[01], which causes go/build to select pure
 	// Go/native implementations, respectively, based on build

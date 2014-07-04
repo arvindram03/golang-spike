@@ -1,14 +1,12 @@
 package controllers
 
 import (
-	"booking-engine/app/models"
 	"github.com/revel/revel"
-)
+	"booking-engine/app/models")
 
 type SessionController struct {
 	*revel.Controller
 }
-
 
 func (sessionController SessionController) ScreenAvailability(sessionId int) revel.Result {
 	session := &models.Session{Id: sessionId}

@@ -22,8 +22,8 @@ type SeedController struct {
 }
 
 func (seedController SeedController) Seed() revel.Result {
-
 	dbmap := helpers.GetDbMap()
+
 	dbmap.AddTableWithName(models.Seat{}, "seats").SetKeys(true, "Id")
 	dbmap.AddTableWithName(models.Screen{}, "screens").SetKeys(true, "Id")
 	dbmap.AddTableWithName(models.Session{}, "sessions").SetKeys(true, "Id")

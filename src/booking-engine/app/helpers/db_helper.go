@@ -1,12 +1,11 @@
 package helpers
 
 import (
-	"database/sql"
-	"fmt"
 	"github.com/coopernurse/gorp"
+	"database/sql"
 	_ "github.com/lib/pq"
+	"fmt"
 )
-
 var dbcon *sql.DB
 var err error
 
@@ -16,15 +15,16 @@ func initDb() {
 	dbcon.SetMaxIdleConns(4)
 }
 
+
 func GetDbMap() *gorp.DbMap {
-	if dbcon == nil {
+	if dbcon==nil {
 		initDb()
 	}
-	if ok := err == nil; ok {
+	if ok := err==nil; ok {
 		dbmap := &gorp.DbMap{Db: dbcon, Dialect: gorp.PostgresDialect{}}
-		fmt.Println("dbcon", dbcon)
-		fmt.Println("dbMap", dbmap)
-		return dbmap
+		fmt.Println("dbcon",dbcon)
+		fmt.Println("dbMap",dbmap)
+		return dbmap;
 	}
 	return nil
 }

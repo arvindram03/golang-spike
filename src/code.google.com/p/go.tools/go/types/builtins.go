@@ -100,7 +100,7 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 			}
 			if isString(x.typ) {
 				if check.Types != nil {
-					sig := makeSig(S, S, NewSlice(UniverseByte))
+					sig := makeSig(S, S, x.typ)
 					sig.variadic = true
 					check.recordBuiltinType(call.Fun, sig)
 				}
@@ -302,12 +302,11 @@ func (check *Checker) builtin(x *operand, call *ast.CallExpr, id builtinId) (_ b
 			return
 		}
 
+		if check.Types != nil {
+			check.recordBuiltinType(call.Fun, makeSig(Typ[Int], x.typ, y.typ))
+		}
 		x.mode = value
 		x.typ = Typ[Int]
-		if check.Types != nil {
-			S := NewSlice(dst)
-			check.recordBuiltinType(call.Fun, makeSig(x.typ, S, S))
-		}
 
 	case _Delete:
 		// delete(m, k)

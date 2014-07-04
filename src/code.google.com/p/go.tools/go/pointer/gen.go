@@ -226,7 +226,7 @@ func (a *analysis) valueNode(v ssa.Value) nodeid {
 		if a.log != nil {
 			comment = v.String()
 		}
-		id = a.addOneNode(v.Type(), comment, nil)
+		id = a.addNodes(v.Type(), comment)
 		if obj := a.objectNode(nil, v); obj != 0 {
 			a.addressOf(v.Type(), id, obj)
 		}
@@ -434,7 +434,7 @@ func (a *analysis) genConv(conv *ssa.Convert, cgn *cgnode) {
 
 	case *types.Pointer:
 		// *T -> unsafe.Pointer?
-		if tDst == tUnsafePtr {
+		if tDst.Underlying() == tUnsafePtr {
 			// ignore for now
 			// a.copy(res, a.valueNode(conv.X), 1)
 			return

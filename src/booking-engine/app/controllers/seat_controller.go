@@ -7,8 +7,7 @@ import (
 	"strconv"
 	"fmt"
 	"net/http"
-	"log"
-)
+	"log")
 
 type SeatController struct {
 	*revel.Controller
@@ -22,9 +21,18 @@ func (seatController SeatController) Load() revel.Result {
 	return seatController.RenderHtml(status);
 }
 
+func (seatController SeatController) LoadSets() revel.Result {
+	status := "ko"
+	if models.LoadSetsIntoRedis() {
+		status = "ok"
+	}
+	return seatController.RenderHtml(status);
+}
+
 func (seat SeatController) Block(seatName string) revel.Result {
 	seat1 := &models.Seat{0,seatName,"",0}
 	status := "ko"
+	seat.Response.Status = http.StatusBadRequest
 
 	if seat1.Block() {
 		seat.Response.Status = http.StatusOK
