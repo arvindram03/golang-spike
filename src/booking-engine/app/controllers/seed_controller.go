@@ -65,7 +65,7 @@ func DumpSessions(dbmap *gorp.DbMap, screen models.Screen) {
 			fmt.Println(err)
 		}
 
-		DumpSeats(dbmap, session)
+		go DumpSeats(dbmap, session)
 	}
 }
 
