@@ -71,8 +71,8 @@
       <file leaf-file-name="app.conf" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/booking-engine/conf/app.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9495913" vertical-offset="323" max-vertical-offset="1139">
-              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.4400545" vertical-offset="323" max-vertical-offset="1139">
+              <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -810,12 +810,12 @@
       <workItem from="1404295617018" duration="27070000" />
       <workItem from="1404446728037" duration="7940000" />
       <workItem from="1404455036739" duration="869000" />
-      <workItem from="1404459327853" duration="2145000" />
+      <workItem from="1404459327853" duration="2706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130144000" />
+    <option name="totallyTimeSpent" value="130705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="878" extended-state="6" />
@@ -1246,8 +1246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/booking-engine/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9495913" vertical-offset="323" max-vertical-offset="1139">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.4400545" vertical-offset="323" max-vertical-offset="1139">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
           <folding />
         </state>
       </provider>
