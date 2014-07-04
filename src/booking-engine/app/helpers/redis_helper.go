@@ -19,7 +19,7 @@ var c redis.Conn
 var conerror error
 
 func initRedis() {
-	result, found := revel.Config.String("db.address")
+	result, found := revel.Config.String("redis.server.address")
 	if !found {
 		log.Fatalln("DB address not found in config")
 	}
