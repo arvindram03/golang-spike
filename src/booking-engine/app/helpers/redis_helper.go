@@ -6,6 +6,7 @@ import (
 	"github.com/youtube/vitess/go/pools"
 	"log"
 	"time"
+	"github.com/revel/revel"
 )
 
 const (
@@ -18,7 +19,11 @@ var c redis.Conn
 var conerror error
 
 func initRedis() {
-	c, conerror = redis.Dial("tcp", ":6379")
+	result, found := revel.Config.String("db.address")
+	if !found {
+		log.Fatalln("DB address not found in config")
+	}
+	c, conerror = redis.Dial("tcp", result)
 	log.Println("created redis connection")
 }
 
