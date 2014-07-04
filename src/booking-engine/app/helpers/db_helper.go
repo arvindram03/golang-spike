@@ -14,11 +14,15 @@ var err error
 func initDb() {
 	psql_user, psql_user_found := revel.Config.String("psql.user")
 	psql_host, psql_host_found := revel.Config.String("psql.host")
+
+	revel.ERROR.Println("PSQL_USER"+psql_user)
+	revel.ERROR.Println("PSQL_HOST"+psql_host)
+
 	if !psql_user_found || !psql_host_found {
 		log.Fatalln("Psql details not found")
 	}
 
-	dbcon, err = sql.Open("postgres", "user="+ psql_user+"host="+psql_host+" dbname=booking-engine sslmode=disable")
+	dbcon, err = sql.Open("postgres", "user="+ psql_user+" host="+psql_host+" dbname=booking-engine sslmode=disable")
 	dbcon.SetMaxOpenConns(40)
 	dbcon.SetMaxIdleConns(4)
 }
