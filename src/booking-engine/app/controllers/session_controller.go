@@ -2,7 +2,8 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"booking-engine/app/models")
+	"booking-engine/app/models"
+)
 
 type SessionController struct {
 	*revel.Controller
