@@ -1,0 +1,58 @@
+diff --git a/google/compile.inc b/google/compile.inc
+index efdac62..edc9170 100644
+--- a/google/compile.inc
++++ b/google/compile.inc
+@@ -27,16 +27,16 @@ ${SRC_DIR}/configure \
+   --with-mysqld-user=mysql \
+   --with-unix-socket-path=/var/lib/mysql/mysql.sock \
+   --with-pic \
+-  --prefix=/ \
+-  --exec-prefix=/usr \
+-  --libexecdir=/usr/sbin \
+-  --libdir=/usr/lib \
++  --with-ssl=$VT_MYSQL_ROOT \
++  --prefix=$VT_MYSQL_ROOT \
++  --exec-prefix=$VT_MYSQL_ROOT \
++  --libexecdir=$VT_MYSQL_ROOT/sbin \
++  --libdir=$VT_MYSQL_ROOT/lib \
+   --sysconfdir=/etc \
+-  --datadir=/usr/share \
++  --datadir=$VT_MYSQL_ROOT/share \
+   --localstatedir=/var/lib/mysql \
+-  --infodir=/usr/share/info \
+-  --includedir=/usr/include \
+-  --mandir=/usr/share/man \
++  --infodir=$VT_MYSQL_ROOT/share/info \
++  --includedir=$VT_MYSQL_ROOT/include \
+   --enable-thread-safe-client \
+   --with-plugins=innodb_plugin,googlestats \
+   --with-lzo2-dir=bundled \
+@@ -47,14 +47,13 @@ ${SRC_DIR}/configure \
+   --enable-perftools-tcmalloc \
+   ${enable_minimal} \
+   --with-comment="Google MySQL ${MYSQL_VERSION} build ${MYSQL_RELEASE}" \
+-  --disable-shared \
+   --with-zlib-dir=bundled \
+   --with-server-suffix=${server_suffix} \
+   --without-embedded-server \
+   --without-vio \
+   ${with_debug} \
+   --without-docs \
+-  --with-man \
++  --without-man \
+   CC=${CC} CPP=${CPP} CXX=${CXX} LD=${LD} RANLIB=${RANLIB} AR=${AR} \
+   CPPFLAGS="${CPPFLAGS}" \
+   LDFLAGS="${LDFLAGS} ${profile_lib}" \
+diff --git a/libmysql/Makefile.shared b/libmysql/Makefile.shared
+index ee2bbc3..5854a14 100644
+--- a/libmysql/Makefile.shared
++++ b/libmysql/Makefile.shared
+@@ -61,7 +61,7 @@ mysysobjects1 =		my_init.lo my_static.lo my_malloc.lo my_realloc.lo \
+ 			my_symlink.lo my_fstream.lo mf_arr_appstr.lo \
+ 			mf_loadpath.lo my_pthread.lo my_thr_init.lo \
+ 			thr_mutex.lo mulalloc.lo string.lo \
+-                        default.lo default_modify.lo checksum_io.lo \
++                        default.lo default_modify.lo checksum_io.lo checksum.lo\
+ 			my_compress.lo array.lo my_once.lo list.lo my_net.lo \
+                         charset.lo charset-def.lo hash.lo mf_iocache.lo \
+                         mf_iocache2.lo my_seek.lo my_sleep.lo \
